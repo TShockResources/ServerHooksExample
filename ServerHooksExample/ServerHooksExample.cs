@@ -8,6 +8,7 @@ using TerrariaApi.Server;
 
 namespace ServerHooksExample
 {
+    [ApiVersion(1,17)]
     public class ServerHooksExample : TerrariaPlugin
     {
         /// <summary>
