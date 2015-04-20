@@ -53,6 +53,12 @@ namespace ServerHooksExample
         /// </summary>
         public override void Initialize()
         {
+            //The ``ServerApi.Hooks`` namespace has quite a few hooks within it available for you to use.
+            //In this example I have hooked into the ``ClientChatReceived`` hook. This hook is fired each time 
+            //the server receives a chat message from a player.
+
+            //By passing in a reference to my ``OnChat`` function I am able to have code that is executed at the time
+            //that the hook is fired.
             ServerApi.Hooks.ClientChatReceived.Register(this, OnChat);
         }
 
@@ -68,9 +74,14 @@ namespace ServerHooksExample
             }
         }
 
+        /// <summary>
+        /// This function is called at the time that the hook is fired, which is upon receipt of a chat message.
+        /// In this case, the example is simple and contrived and simply prints the chat message and its sender to the console.
+        /// </summary>
+        /// <param name="args">The event arguments which are passed in by the hooking manager.</param>
         private void OnChat(ChatReceivedEventArgs args)
         {
-           Console.WriteLine("{0} said {1}.");     
+           Console.WriteLine("{0} said \"{1}\".");     
         }
     }
 }
