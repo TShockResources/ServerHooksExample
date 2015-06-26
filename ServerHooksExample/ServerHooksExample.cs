@@ -54,12 +54,12 @@ namespace ServerHooksExample
         public override void Initialize()
         {
             //The ``ServerApi.Hooks`` namespace has quite a few hooks within it available for you to use.
-            //In this example I have hooked into the ``ClientChatReceived`` hook. This hook is fired each time 
+            //In this example I have hooked into the ``ServerChat`` hook. This hook is fired each time 
             //the server receives a chat message from a player.
 
             //By passing in a reference to my ``OnChat`` function I am able to have code that is executed at the time
             //that the hook is fired.
-            ServerApi.Hooks.ClientChatReceived.Register(this, OnChat);
+            ServerApi.Hooks.ServerChat.Register(this, OnChat);
         }
 
         /// <summary>
@@ -70,7 +70,7 @@ namespace ServerHooksExample
         {
             if (disposing)
             {
-                ServerApi.Hooks.ClientChatReceived.Deregister(this, OnChat);   
+                ServerApi.Hooks.ServerChat.Deregister(this, OnChat);   
             }
         }
 
@@ -79,9 +79,10 @@ namespace ServerHooksExample
         /// In this case, the example is simple and contrived and simply prints the chat message and its sender to the console.
         /// </summary>
         /// <param name="args">The event arguments which are passed in by the hooking manager.</param>
-        private void OnChat(ChatReceivedEventArgs args)
+        private void OnChat(ServerChatEventArgs args)
         {
-           Console.WriteLine("{0} said \"{1}\".");     
+           //Console.WriteLine(...) allows for C# string formatting. In this case {0} is replaced with the player's name, and {1} and replaced with the text.
+           Console.WriteLine("{0} said \"{1}\".", TShock.Players[args.Who].Name, args.Text);     
         }
     }
 }
