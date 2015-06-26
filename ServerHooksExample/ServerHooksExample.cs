@@ -72,6 +72,7 @@ namespace ServerHooksExample
             {
                 ServerApi.Hooks.ServerChat.Deregister(this, OnChat);   
             }
+            base.Dispose(disposing);
         }
 
         /// <summary>
