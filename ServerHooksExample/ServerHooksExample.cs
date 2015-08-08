@@ -6,7 +6,7 @@ using TShockAPI;
 
 namespace ServerHooksExample
 {
-    [ApiVersion(1, 20)]
+    [ApiVersion(1, 21)]
     public class ServerHooksExample : TerrariaPlugin
     {
         /// <summary>
