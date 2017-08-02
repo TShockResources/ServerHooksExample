@@ -6,40 +6,28 @@ using TShockAPI;
 
 namespace ServerHooksExample
 {
-    [ApiVersion(1, 21)]
+    [ApiVersion(2, 1)]
     public class ServerHooksExample : TerrariaPlugin
     {
         /// <summary>
         /// The name of the plugin.
         /// </summary>
-        public override string Name
-        {
-            get { return "Server Hooks Example Plugin"; }
-        }
+        public override string Name => "Server Hooks Example Plugin";
 
         /// <summary>
         /// The version of the plugin in its current state.
         /// </summary>
-        public override Version Version
-        {
-            get { return new Version(1, 0, 0); }
-        }
+        public override Version Version => new Version(1, 0, 0);
 
         /// <summary>
         /// The author(s) of the plugin.
         /// </summary>
-        public override string Author
-        {
-            get { return "Ijwu"; }
-        }
+        public override string Author => "Ijwu";
 
         /// <summary>
         /// A short, one-line, description of the plugin's purpose.
         /// </summary>
-        public override string Description
-        {
-            get { return "An example plugin used to demonstrate the process of hooking server events through TSAPI."; }
-        }
+        public override string Description => "An example plugin used to demonstrate the process of hooking server events through TSAPI.";
 
         public ServerHooksExample(Main game) : base(game)
         {
@@ -80,8 +68,7 @@ namespace ServerHooksExample
         /// <param name="args">The event arguments which are passed in by the hooking manager.</param>
         private void OnChat(ServerChatEventArgs args)
         {
-           //Console.WriteLine(...) allows for C# string formatting. In this case {0} is replaced with the player's name, and {1} and replaced with the text.
-           Console.WriteLine("{0} said \"{1}\".", TShock.Players[args.Who].Name, args.Text);     
+           Console.WriteLine($"{TShock.Players[args.Who].Name} said \"{args.Text}\".");     
         }
     }
 }
